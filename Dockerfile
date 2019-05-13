@@ -9,7 +9,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 RUN apt-get -y install nodejs
 
-RUN apt-get update
+RUN apt-get -y update
 
 
 ENV MYSQL_PWD password
@@ -20,8 +20,6 @@ RUN apt-get -y install mysql-server
 
 
 RUN apt-get update
-
-RUN apt-get upgrade
 
 RUN apt-get -y install redis-server
 
