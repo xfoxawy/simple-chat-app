@@ -10,13 +10,13 @@ var conversationsRouter = require('./routes/conversations');
 var bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 var redis = require("redis");
-var client = redis.createClient();
+var client = redis.createClient(6379, 'redis');
 const {promisify} = require('util');
 const getAsync = promisify(client.get).bind(client);
 
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize('wackcap', 'root', 'password', {
-  host: 'localhost',
+const sequelize = new Sequelize('wackcap', 'root', '', {
+  host: 'db',
   dialect: 'mysql',
 });
 

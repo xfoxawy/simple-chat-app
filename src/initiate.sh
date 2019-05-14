@@ -4,27 +4,27 @@ echo "##########################################################################
 echo "initiation started"
 echo "###################################################################################"
 
-wait 
+# wait 
 
-sudo service redis-server start
+# sudo service redis-server start
 
-wait
+# wait
 
 echo "###################################################################################"
 echo "redis work"
 echo "###################################################################################"
 
-sudo service mysql start
+# sudo service mysql start
 
-wait
+# wait
 
 echo "###################################################################################"
 echo "mysql work"
 echo "###################################################################################"
 
-wait
+# wait
 
-echo "create database wackcap" | mysql -u root -ppassword
+# echo "create database wackcap" | mysql -h db -u root
 echo "###################################################################################"
 echo "wackcap database created"
 echo "###################################################################################"
@@ -33,14 +33,16 @@ echo "##########################################################################
 echo "###################################################################################"
 echo "run migrations and seeds"
 echo "###################################################################################"
-cd services/users
+cd /var/www/app/services/users
+npx sequelize db:create  
+wait
 npx sequelize db:migrate
 wait 
 npx sequelize-cli db:seed:all
 
 pwd
 
-cd ../conversations
+cd /var/www/app/services/conversations
 npx sequelize db:migrate
 
 echo "###################################################################################"
